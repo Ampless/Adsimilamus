@@ -33,5 +33,5 @@ void main(List<String> arguments) {
           },
           customHeaders: {'Access-Control-Allow-Origin': '*'}),
       InternetAddress.anyIPv6,
-      args['port']);
+      int.parse(args['port']));
 }
