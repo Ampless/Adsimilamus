@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:args/args.dart';
@@ -23,12 +22,12 @@ void main(List<String> arguments) {
                 'AUTH: $user $bundleid $appversion $osversion → ${af(authid)}');
             return authid;
           },
-          getContent: (endpoint, authid) async {
-            if (endpoint == 'dsbtimetables') {
+          getContent: (path, authid) async {
+            if (path == 'dsbtimetables') {
               final ttjson =
-                  await Session(authid, endpoint: backend).getTimetableJson();
-              print('GET: ${af(authid)} $endpoint');
-              return json.encode(ttjson);
+                  Session(authid, endpoint: backend).getTimetableJsonString();
+              print('GET: ${af(authid)} $path');
+              return ttjson;
             }
           },
           customHeaders: {'Access-Control-Allow-Origin': '*'}),

@@ -7,7 +7,7 @@ environment:
 dependencies:
   args: ^2.3.0
   dsb_server: ^0.1.1
-  dsbuntis: ^7.0.0-alpha.0
+  dsbuntis: ^7.0.0-alpha.3
   path: ^1.8.0
   shelf: ^1.2.0
 
