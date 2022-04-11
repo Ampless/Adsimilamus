@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:args/args.dart';
 import 'package:dsb_server/dsb_server.dart';
-import 'package:dsbuntis/dsbuntis.dart';
+import 'package:dsb/dsb.dart';
 import 'package:shelf/shelf_io.dart';
 
 String af(String authid) => authid.replaceFirst(RegExp('-.+'), '…');
@@ -23,12 +23,9 @@ void main(List<String> arguments) {
             return authid;
           },
           getContent: (path, authid) async {
-            if (path == 'dsbtimetables') {
-              final ttjson =
-                  Session(authid, endpoint: backend).getTimetableJsonString();
-              print('GET: ${af(authid)} $path');
-              return ttjson;
-            }
+            final json = Session(authid, endpoint: backend).getJsonString(path);
+            print('GET: ${af(authid)} $path');
+            return json;
           },
           customHeaders: {'Access-Control-Allow-Origin': '*'}),
       InternetAddress.anyIPv6,
